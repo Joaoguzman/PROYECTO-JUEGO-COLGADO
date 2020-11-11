@@ -2,6 +2,43 @@ import random
 
 colgadito = ["puma", "chinchilla", "pudu", "huemul", "condor", "güiña", "guanaco", "ranita de Darwin", "monito del monte", "pingüino de Humbolt"]
 
+figura = ['''
++++++
+    |
+    |
+    |
+====''', '''
++++++
+ O  |
+    |
+    |
+====''', '''
++++++
+ O  |
+ |  |
+    |
+====''', '''
++++++
+ O  |
+/|  |
+    |
+====''', '''
++++++
+ O  |
+/|\ |
+    |
+====''', '''
++++++
+ O  |
+/|\ |
+/   |
+====''', '''
++++++
+ O  |
+/|\ |
+/ \ |
+====''']
+
 
 #animal = random.choice(colgadito)
 
@@ -31,6 +68,7 @@ for letra in range(len(palabra_aleatoria)):
         print(palabra_aleatoria[letra], end = ' ')
 """
 contador = 0
+'''
 while True:
     letra = input("Ingrese una Letra: ")
 
@@ -44,18 +82,36 @@ while True:
     if contador == len(palabra_aleatoria):
         print("Todas las letras adivinadas")
         break
-
-
-
-
-
 '''
+lista_palabra = []
+for letra in palabra_aleatoria:
+        lista_palabra.append("_")
+def actualiza_tablero(letra_adivinada, palabra_secreta):
+    if letra_adivinada in palabra_secreta:
+        for letra in range(len(palabra_secreta)):
+            if palabra_secreta[letra] == letra_adivinada:
+                lista_palabra[letra] = letra_adivinada
+    print(lista_palabra)        
+
+#Actualización de tablero 
+#El programa tiene 7 intentos
+contador = 1
+contador_personaje = 0
+
 while True:
-        l = input("Ingrese una Letra")
-        if l in palabra_aleatoria:
-            for x in palabra_aleatoria:
-                if x == l:
-                    print(l, end=' ')
-                else:
-                    print("_", end=' ')
-'''
+    print(figura[contador_personaje])
+    letra = input("Ingresa una letra: ")
+    if letra in palabra_aleatoria:
+        actualiza_tablero(letra, palabra_aleatoria)
+        contador += 1
+    else:
+        print("No está la letra en la palabra")
+        contador_personaje += 1
+        if contador_personaje == 6:
+            print("Perdiste! Lo has ahorcado. Vuelve a intentarlo!")
+            break
+        elif contador == len(palabra_aleatoria):
+            print("Ganaste! Lo salvaste")
+            break
+            
+
