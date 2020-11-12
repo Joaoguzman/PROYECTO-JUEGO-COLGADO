@@ -44,8 +44,6 @@ def obtener_palabra_aleatoria(listado):
     animal = random.choice(listado)
     return animal
 
-
-
 palabra_aleatoria = obtener_palabra_aleatoria(colgadito)
 
 lista_palabra = []
@@ -54,21 +52,25 @@ for letra in palabra_aleatoria:
 
 def actualiza_tablero(letra_adivinada, palabra_secreta):
     adivinadas = 0
-    if letra_adivinada in palabra_secreta:
-        for letra in range(len(palabra_secreta)):
-            if palabra_secreta[letra] == letra_adivinada:
-                lista_palabra[letra] = letra_adivinada
-                adivinadas += 1
+    if letra_adivinada in lista_palabra:
+        print("La letra ya fue agregada")
+    else:
+        if letra_adivinada in palabra_secreta:
+            for letra in range(len(palabra_secreta)):
+                if palabra_secreta[letra] == letra_adivinada:
+                    lista_palabra[letra] = letra_adivinada
+                    adivinadas += 1
 
             #retornar letras adivinadas
     print(lista_palabra)
     return adivinadas  
 
 #Actualización de tablero 
-#El programa tiene 7 intentos
+#El programa tiene 6 intentos
 contador = 0
 contador_personaje = 0
 
+print(lista_palabra)    
 while True:
     print(figura[contador_personaje])
     letra = input("Ingresa una letra: ")
@@ -86,6 +88,3 @@ while True:
         if contador_personaje == 6:
             print("Perdiste! Lo has ahorcado. Vuelve a intentarlo!")
             break
-            
-            
-
